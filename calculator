@@ -53,7 +53,16 @@
     function append(value) {
       document.getElementById('display').value += value;
     }
+    let isResultShown = false;
 
+    function append(value) {
+      const display = document.getElementById('display');
+      if (isResultShown) {
+        display.value = '';
+        isResultShown = false;
+      }
+      display.value += value;
+    }
     function clearDisplay() {
       document.getElementById('display').value = '';
     }
@@ -72,5 +81,3 @@
     }
   </script>
 
-</body>
-</html>
