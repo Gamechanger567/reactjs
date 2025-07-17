@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Enhanced Calculator</title>
+  <style>
+    /* General Page Styles */
+    body {
+      background-color: #f0f4f8;
+      font-family: 'Arial', sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+    }
+
+    h2 {
+      color: #004d40;
+      text-align: center;
+      margin-bottom: 20px;
+    }
+
+    /* Calculator Table Styles */
+    .calculator-container {
+      background-color: #ffffff;
+      border-radius: 15px;
+      box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+      padding: 20px;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+
+    td {
+      padding: 10px;
+      text-align: center;
+    }
+
+    /* Display Area */
+    #display {
+      width: 100%;
+      font-size: 32px;
+      padding: 15px;
+      background-color: #004d40;
+      color: white;
+      border: none;
+      border-radius: 10px;
+      text-align: right;
+      margin-bottom: 15px;
+      box-sizing: border-box;
+    }
+
+    /* Button Styles */
+    button {
+      background-color: #00796b;
+      color: white;
+      border: none;
+      font-size: 22px;
+      padding: 20px;
+      width: 100%;
+      border-radius: 10px;
+      cursor: pointer;
+      transition: background-color 0.3s ease, transform 0.2s ease;
+    }
+
+    button:hover {
+      background-color: #004d40;
+      transform: scale(1.1);
+    }
+
+    button:active {
+      background-color: #00332d;
+    }
+
+    button:disabled {
+      background-color: #b2dfdb;
+      cursor: not-allowed;
+    }
+
+    /* Row Styles */
+    .operator-buttons td {
+      background-color: #004d40;
+    }
+
+    .operator-buttons button {
+      background-color: #00796b;
+      color: white;
+    }
+
+    .equal-button button {
+      background-color: #0288d1;
+    }
+
+    /* For styling C & Backspace */
+    .action-buttons button {
+      background-color: #f44336;
+    }
+
+  </style>
+</head>
+<body>
+
+  <div class="calculator-container">
+    <h2>Enhanced Calculator</h2>
+    
+    <table>
+      <tr>
+        <td colspan="4">
+          <input type="text" id="display" disabled>
+        </td>
+      </tr>
+
+      <!-- Action Buttons (C and Backspace) -->
+      <tr class="action-buttons">
+        <td><button onclick="clearDisplay()">C</button></td>
+        <td><button onclick="backspace()">⌫</button></td>
+        <td><button onclick="append('%')">%</button></td>
+        <td><button onclick="append('/')">÷</button></td>
+      </tr>
+
+      <!-- Number and Operators -->
+      <tr>
+        <td><button onclick="append('7')">7</button></td>
+        <td><button onclick="append('8')">8</button></td>
+        <td><button onclick="append('9')">9</button></td>
+        <td><button onclick="append('*')">×</button></td>
+      </tr>
+
+      <tr>
+        <td><button onclick="append('4')">4</button></td>
+        <td><button onclick="append('5')">5</button></td>
+        <td><button onclick="append('6')">6</button></td>
+        <td><button onclick="append('-')">−</button></td>
+      </tr>
+
+      <tr>
+        <td><button onclick="append('1')">1</button></td>
+        <td><button onclick="append('2')">2</button></td>
+        <td><button onclick="append('3')">3</button></td>
+        <td><button onclick="append('+')">+</button></td>
+      </tr>
+
+      <tr>
+        <td colspan="2"><button onclick="append('0')">0</button></td>
+        <td><button onclick="append('.')">.</button></td>
+        <td class="equal-button"><button onclick="calculate()">=</button></td>
+      </tr>
+    </table>
+  </div>
+
+  <script>
+    function append(value) {
+      const display = document.getElementById('display');
+      display.value += value;
+    }
+
+    function clearDisplay() {
+      document.getElementById('display').value = '';
+    }
+
+    function backspace() {
+      let current = document.getElementById('display').value;
+      document.getElementById('display').value = current.slice(0, -1);
+    }
+
+    function calculate() {
+      try {
+        document.getElementById('display').value = eval(document.getElementById('display').value);
+      } catch {
+        alert("Invalid Expression");
+      }
+    }
+  </script>
+
+</body>
+</html>
